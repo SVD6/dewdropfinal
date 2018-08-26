@@ -2,6 +2,7 @@ package com.example.saivikranthdesu.dewdrop;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.provider.Contacts;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -40,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
         TextView welcome = findViewById(R.id.welcome_login);
 
         ArrayList<CardView> viewList = new ArrayList<>();
+        String UIDforreal = getIntent().getStringExtra("UID");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        UID = user.getUid();
+        if (user != null) {
+            UID = user.getUid();
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        welcome.setText("Welcome Sai Vikranth Desu");
+        welcome.setText("Welcome");
 
         addbutton.setOnClickListener(view -> {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -75,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout otherone = (LinearLayout) getLayoutInflater().inflate(R.layout.cardview_plant, null);
                     TextView plantname = otherone.findViewById(R.id.plant_name_cardview);
                     TextView planttype = otherone.findViewById(R.id.plant_type_cardview);
-                    TextView moisturelevel = otherone.findViewById(R.id.current_moisture);
+                    TextView moisturelevel = otherone.findViewById(R.id.target_moisture);
+                    TextView currentmoisture = otherone.findViewById(R.id.current_moisture);
+                    TextView temperature = otherone.findViewById(R.id.temperature);
                     plantname.setText(plantnameinput.getText().toString());
                     planttype.setText(planttypeinput.getText().toString());
                     moisturelevel.setText(targetmoisture.getText().toString());
@@ -83,7 +89,19 @@ public class MainActivity extends AppCompatActivity {
                     database.getReference().child("Soil moisture").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            moisturelevel.setText(dataSnapshot.getValue().toString());
+                            currentmoisture.setText(dataSnapshot.getValue().toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    database.getReference().child("Temperature").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            temperature.setText(dataSnapshot.getValue().toString());
                         }
 
                         @Override
@@ -97,9 +115,18 @@ public class MainActivity extends AppCompatActivity {
                     plant.setPlanttype(planttypeinput.getText().toString());
                     plant.setMoisturelevel(23);
 
-                    database.getReference().child("users").
-                            child(this.UID).
-                            child("plants").child(plantnameinput.getText().toString()).setValue(plant);
+//                    if (UID != null) {
+//                        database.getReference().child("users").
+//                                child(this.UID).
+//                                child("plants").child(plantnameinput.getText().toString()).setValue(plant);
+//                    } else {
+//                        database.getReference().child("fail").setValue(plant);
+//                    }
+
+                    if (UIDforreal != null) {
+                        database.getReference().child("users").child(UIDforreal).child("plants").child(plantnameinput.getText().toString()
+                        ).setValue(plant);
+                    }
 
                     mainlayout.addView(otherone);
                     alert.hide();
