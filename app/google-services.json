@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "26454568717",
+    "firebase_url": "https://dewdrop-a3eec.firebaseio.com",
+    "project_id": "dewdrop-a3eec",
+    "storage_bucket": "dewdrop-a3eec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26454568717:android:3210db75b01ca011",
+        "android_client_info": {
+          "package_name": "com.example.saivikranthdesu.dewdrop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26454568717-tijinltgkae6jnjobnfq3pbtr5vf6i60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDewGV6ZZX2qe5bgUGI0l9v5oWks0-0E7s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
