@@ -54,9 +54,29 @@
             android:background="@android:color/transparent"
             android:hint="Plant Type"
             android:inputType="text"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp"/>
+            android:padding="10dp" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moisture Level (%): "
+            android:textSize="20dp"
+            android:layout_marginRight="15dp"/>
+
+        <NumberPicker
+            android:id="@+id/moisture_level"
+            android:layout_width="54dp"
+            android:layout_height="124dp"
+            android:layout_gravity="center"></NumberPicker>
+
+    </LinearLayout>
 
 </LinearLayout>

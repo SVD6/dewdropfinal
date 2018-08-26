@@ -53,6 +53,7 @@
             <EditText
                 android:id="@+id/signup_email"
                 android:layout_width="250dp"
+                android:inputType="textEmailAddress"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -71,6 +72,7 @@
             <EditText
                 android:id="@+id/signup_password"
                 android:layout_width="250dp"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>

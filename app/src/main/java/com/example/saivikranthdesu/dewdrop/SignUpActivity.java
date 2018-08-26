@@ -55,7 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 obj.setName(name.getText().toString());
                                 database.getReference().child("users").child(user.getUid()).setValue(obj);
 
+                                Toast.makeText(SignUpActivity.this, "Welcome! Please sign in with your new credentials", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
