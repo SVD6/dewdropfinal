@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:hint="Plant Name"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="10dp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:hint="Plant Type"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="10dp"
             android:layout_marginBottom="20dp"/>
 
