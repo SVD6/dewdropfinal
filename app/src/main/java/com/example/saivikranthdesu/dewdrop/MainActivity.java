@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<CardView> viewList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        UID = user.getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         welcome.setText("Welcome Sai Vikranth Desu");
@@ -95,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     plant.setPlanttype(planttypeinput.getText().toString());
                     plant.setMoisturelevel(23);
 
-                    database.getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("plants").child(plantnameinput.getText().toString()).setValue(plant);
+                    database.getReference().child("users").
+                            child(this.UID).
+                            child("plants").child(plantnameinput.getText().toString()).setValue(plant);
 
                     mainlayout.addView(otherone);
                     alert.hide();
