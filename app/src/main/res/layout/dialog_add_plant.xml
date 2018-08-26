@@ -61,21 +61,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:text="Moisture Level (%): "
-            android:textSize="20dp"
-            android:layout_marginRight="15dp"/>
+            android:textSize="20dp" />
 
-        <NumberPicker
-            android:id="@+id/moisture_level"
-            android:layout_width="54dp"
-            android:layout_height="124dp"
-            android:layout_gravity="center"></NumberPicker>
+        <EditText
+            android:id="@+id/moisture_target_level"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
 
     </LinearLayout>
 

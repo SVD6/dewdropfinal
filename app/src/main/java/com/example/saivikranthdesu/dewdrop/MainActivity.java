@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.saivikranthdesu.dewdrop.objects.plantobject;
-import com.example.saivikranthdesu.dewdrop.objects.userobject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,13 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<CardView> viewList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-//        userobject obj = database.getReference().child("users").child(user.getUid()).
-//
-//        welcome.setText("Welcome " + database.getReference().child("users").child(user.getUid()).);
+        welcome.setText("Welcome Sai Vikranth Desu");
 
         addbutton.setOnClickListener(view -> {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             EditText plantnameinput = mView.findViewById(R.id.plant_name_input);
             EditText planttypeinput = mView.findViewById(R.id.plant_type_input);
-//            EditText targetmoisture = mView.findViewById()
+            EditText targetmoisture = mView.findViewById(R.id.moisture_target_level);
 
             builder.setView(mView);
             builder.setCancelable(true);
@@ -80,11 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     TextView moisturelevel = otherone.findViewById(R.id.current_moisture);
                     plantname.setText(plantnameinput.getText().toString());
                     planttype.setText(planttypeinput.getText().toString());
+                    moisturelevel.setText(targetmoisture.getText().toString());
 
                     database.getReference().child("Soil moisture").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            moisturelevel.setText((String) dataSnapshot.getValue());
+                            moisturelevel.setText(dataSnapshot.getValue().toString());
                         }
 
                         @Override
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     plant.setPlanttype(planttypeinput.getText().toString());
                     plant.setMoisturelevel(23);
 
-                    database.getReference().child("users").child(user.getUid()).child("plants").setValue(plant);
+                    database.getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("plants").child(plantnameinput.getText().toString()).setValue(plant);
 
                     mainlayout.addView(otherone);
                     alert.hide();

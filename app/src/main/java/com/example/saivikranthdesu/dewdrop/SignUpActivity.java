@@ -42,29 +42,29 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(this, "You dumb bitch", Toast.LENGTH_SHORT).show();
             } else {
                 mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "createUserWithEmail:success");
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success");
 
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                userobject obj = new userobject();
-                                obj.setEmail(email.getText().toString());
-                                obj.setName(name.getText().toString());
-                                database.getReference().child("users").child(user.getUid()).setValue(obj);
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    userobject obj = new userobject();
+                                    obj.setEmail(email.getText().toString());
+                                    obj.setName(name.getText().toString());
+                                    database.getReference().child("users").child(user.getUid()).setValue(obj);
 
-                                Toast.makeText(SignUpActivity.this, "Welcome! Please sign in with your new credentials", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                    Toast.makeText(SignUpActivity.this, "Welcome! Please sign in with your new credentials", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
 
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
             }
         });
     }

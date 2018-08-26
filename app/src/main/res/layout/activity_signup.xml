@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue"
+    android:background="@color/whiteAF"
     tools:context=".SignUpActivity">
 
     <LinearLayout
@@ -53,8 +53,8 @@
             <EditText
                 android:id="@+id/signup_email"
                 android:layout_width="250dp"
-                android:inputType="textEmailAddress"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
 
         </LinearLayout>
 
@@ -72,8 +72,8 @@
             <EditText
                 android:id="@+id/signup_password"
                 android:layout_width="250dp"
-                android:inputType="textPassword"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
 
         </LinearLayout>
 
